@@ -14,25 +14,21 @@ public class DbUtils {
         return con;
     }
 
-    public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
+    public static void close(Connection con, PreparedStatement ps, ResultSet rs) { //select
         if(rs != null) {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            try { rs.close(); } catch (Exception e) { e.printStackTrace(); }
         }
 
         if(ps != null) {
-            try {
-                ps.close();
-            } catch (Exception e) {}
+            try { ps.close(); } catch (Exception e) {}
         }
 
         if(con != null) {
-            try {
-                con.close();
-            } catch (Exception e) {}
+            try { con.close(); } catch (Exception e) {}
         }
+    }
+
+    public static void close(Connection con, PreparedStatement ps) { //insert, update, delete
+        close(con, ps, null);
     }
 }
